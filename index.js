@@ -45,6 +45,13 @@ client.connect(err => {
         res.send(result.insertedCount>0))
   })
 
+  app.delete('deleteProduct',(req,res)=>{
+      productCollection.deleteOne({_id: ObjectId(req.body)})
+      .then(result=>{
+          res.send(result.deletedCount>0)
+      })
+  })
+
   app.get('/allOrders',(req,res)=>{
     ordersCollection.find({email: req.query.email})
     .toArray((err,documents)=>{
