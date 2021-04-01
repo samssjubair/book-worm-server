@@ -45,8 +45,8 @@ client.connect(err => {
         res.send(result.insertedCount>0))
   })
 
-  app.delete('deleteProduct',(req,res)=>{
-      productCollection.deleteOne({_id: ObjectId(req.body)})
+  app.delete('/deleteProduct/:id',(req,res)=>{
+      productCollection.deleteOne({_id: ObjectId(req.params.id)})
       .then(result=>{
           res.send(result.deletedCount>0)
       })
